@@ -2,9 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>بطاقة تعريفية متكاملة</title>
-    
-<!-- Google tag (gtag.js) -->
+    <title>بطاقة تعريفية ذكية</title>
+	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRX4PBCES2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,7 +12,6 @@
 
   gtag('config', 'G-MRX4PBCES2');
 </script>
-
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -46,28 +44,25 @@
             transition: var(--transition);
         }
 
-        .size-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin: 20px 0;
+        .social-selector {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
 
-        .size-option {
+        select {
+            width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-            transition: var(--transition);
+            border: 2px solid #ddd;
+            border-radius: 8px;
             background: white;
-            color: var(--primary);
+            transition: var(--transition);
         }
 
-        .size-option.active {
+        select:focus {
             border-color: var(--secondary);
-            background: rgba(52,152,219,0.1);
-            box-shadow: 0 4px 12px rgba(52,152,219,0.2);
+            box-shadow: 0 0 8px rgba(52,152,219,0.3);
         }
 
         #preview {
@@ -77,39 +72,21 @@
             background-position: center;
             border-radius: 25px;
             box-shadow: 0 16px 32px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 580px;
+            min-height: 680px;
+            transition: height 0.3s ease;
         }
 
-        /* القياسات العمودية */
-        #preview.size1-vertical { width: 529px; height: 680px; }
-        #preview.size2-vertical { width: 604px; height: 756px; }
-        #preview.size3-vertical { width: 680px; height: 832px; }
-        #preview.size4-vertical { width: 756px; height: 907px; }
-
-        /* القياسات الأفقية */
-        #preview.size1-horizontal { width: 680px; height: 529px; }
-        #preview.size2-horizontal { width: 756px; height: 604px; }
-        #preview.size3-horizontal { width: 832px; height: 680px; }
-        #preview.size4-horizontal { width: 907px; height: 756px; }
-
         .profile-section {
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.10);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
-            width: 80%;
+            width: 70%;
             text-align: center;
-        }
-
-        #preview[class*="horizontal"] .profile-section {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            width: 90%;
-            text-align: right;
+            margin: 20px auto;
+            transform: translateZ(0);
         }
 
         .profile-image {
@@ -119,6 +96,11 @@
             border: 4px solid white;
             box-shadow: 0 12px 24px rgba(0,0,0,0.2);
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
         }
 
         .info-section {
@@ -130,12 +112,18 @@
             font-size: 32px;
             margin: 0;
             color: var(--primary);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			background: rgba(255,255,255,0.7);
         }
 
         #phone {
             font-size: 20px;
             color: #666;
             margin: 10px 0;
+            padding: 8px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            display: inline-block;
         }
 
         .social-links {
@@ -153,26 +141,55 @@
             box-shadow: 0 3px 8px rgba(0,0,0,0.1);
             color: var(--primary);
             transition: var(--transition);
+            position: relative;
+            cursor: pointer;
         }
 
         .social-item:hover {
-            transform: translateX(10px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .delete-btn {
+            position: absolute;
+            left: 15px;
+            cursor: pointer;
+            color: #e74c3c;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .delete-btn:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        @media print {
+            .delete-btn {
+                display: none !important;
+            }
         }
 
         .social-item i {
-            font-size: 24px;
-            width: 40px;
-            height: 40px;
+            font-size: 15px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            transition: var(--transition);
         }
 
         .fa-facebook { background: #1877f2; }
         .fa-telegram { background: #0088cc; }
-        .fa-instagram { background: #e4405f; }
+        .fa-tiktok { background: #000000; }
+        .fa-whatsapp { background: #25d366; }
+        .fa-x-twitter { background: #000000; }
+        .fa-youtube { background: #ff0000; }
+        .fa-instagram { background: linear-gradient(45deg, #405de6, #e1306c, #ffdc80); }
+        .fa-gamepad { background: #4a4a4a; }
 
         input, button {
             width: 100%;
@@ -184,72 +201,94 @@
             font-size: 16px;
         }
 
+        input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 8px rgba(52,152,219,0.3);
+            outline: none;
+        }
+
         button {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
             border: none;
             font-weight: bold;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(45deg);
+            transition: var(--transition);
+        }
+
+        button:hover::after {
+            left: 120%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            #preview {
+                width: 90%;
+                min-height: 500px;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="input-section">
-            <h2>🎨 إعدادات البطاقة</h2>
+            <h2>مرتضى البيضاني 🎨 إعدادات البطاقة</h2>
             
-            <div class="size-options">
-                <div class="size-option active" onclick="changeSize('size1-vertical')">14×18</div>
-                <div class="size-option" onclick="changeSize('size2-vertical')">16×20</div>
-                <div class="size-option" onclick="changeSize('size3-vertical')">18×22</div>
-                <div class="size-option" onclick="changeSize('size4-vertical')">20×24</div>
-                
-                <div class="size-option" onclick="changeSize('size1-horizontal')">18×14</div>
-                <div class="size-option" onclick="changeSize('size2-horizontal')">20×16</div>
-                <div class="size-option" onclick="changeSize('size3-horizontal')">22×18</div>
-                <div class="size-option" onclick="changeSize('size4-horizontal')">24×20</div>
-            </div>
-
             <input type="file" id="backgroundInput" accept="image/*">
             <input type="file" id="profileInput" accept="image/*">
             
             <input type="text" id="usernameInput" placeholder="اسم المستخدم">
             <input type="text" id="phoneInput" placeholder="رقم الهاتف">
             
-            <input type="text" id="facebookInput" placeholder="حساب الفيسبوك">
-            <input type="text" id="telegramInput" placeholder="حساب التليجرام">
-            <input type="text" id="instagramInput" placeholder="حساب الإنستجرام">
+            <div class="social-selector">
+                <select id="socialSelect">
+                    <option value="facebook">فيسبوك</option>
+                    <option value="telegram">تليجرام</option>
+                    <option value="tiktok">تيك توك</option>
+                    <option value="whatsapp">واتساب</option>
+                    <option value="x">منصة X</option>
+                    <option value="youtube">يوتيوب</option>
+                    <option value="instagram">انستقرام</option>
+                    <option value="pubg">معرف ببجي</option>
+                </select>
+                <input type="text" id="socialUsername" placeholder="اسم المستخدم">
+            </div>
+            <button onclick="addSocial()">➕ إضافة حساب</button>
             
             <button onclick="saveAsImage()">💾 حفظ البطاقة</button>
         </div>
 
         <div class="preview-section">
             <h2>👁️ معاينة البطاقة</h2>
-            <div id="preview" class="size1-vertical">
+            <div id="preview">
                 <div class="profile-section">
                     <img class="profile-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                     <div class="info-section">
                         <h1 id="username">اسم المستخدم</h1>
                         <p id="phone">رقم الهاتف</p>
-                        <div class="social-links">
-                            <div class="social-item" id="facebookPreview">
-                                <i class="fab fa-facebook"></i>
-                                <span>حساب الفيسبوك</span>
-                            </div>
-                            <div class="social-item" id="telegramPreview">
-                                <i class="fab fa-telegram"></i>
-                                <span>حساب التليجرام</span>
-                            </div>
-                            <div class="social-item" id="instagramPreview">
-                                <i class="fab fa-instagram"></i>
-                                <span>حساب الإنستجرام</span>
-                            </div>
-                        </div>
+                        <div class="social-links" id="socialLinks"></div>
                     </div>
                 </div>
             </div>
@@ -257,6 +296,42 @@
     </div>
 
     <script>
+        const socialIcons = {
+            facebook: 'fab fa-facebook',
+            telegram: 'fab fa-telegram',
+            tiktok: 'fab fa-tiktok',
+            whatsapp: 'fab fa-whatsapp',
+            x: 'fab fa-x-twitter',
+            youtube: 'fab fa-youtube',
+            instagram: 'fab fa-instagram',
+            pubg: 'fas fa-gamepad'
+        };
+
+        function addSocial() {
+            const platform = document.getElementById('socialSelect').value;
+            const username = document.getElementById('socialUsername').value;
+            
+            if(!username) return;
+            
+            const socialLinks = document.getElementById('socialLinks');
+            const newItem = document.createElement('div');
+            newItem.className = 'social-item';
+            newItem.innerHTML = `
+                <span class="delete-btn" onclick="this.parentElement.remove();updateSize()">✖</span>
+                <i class="${socialIcons[platform]}"></i>
+                <span>${username}</span>
+            `;
+            socialLinks.appendChild(newItem);
+            updateSize();
+            document.getElementById('socialUsername').value = '';
+        }
+
+        function updateSize() {
+            const preview = document.getElementById('preview');
+            const itemsCount = document.querySelectorAll('.social-item').length;
+            preview.style.height = 680 + (itemsCount * 55) + 'px';
+        }
+
         // تحديث الخلفية
         document.getElementById('backgroundInput').addEventListener('change', function(e) {
             const reader = new FileReader();
@@ -270,7 +345,10 @@
         document.getElementById('profileInput').addEventListener('change', function(e) {
             const reader = new FileReader();
             reader.onload = function() {
-                document.querySelector('.profile-image').src = reader.result;
+                const img = document.querySelector('.profile-image');
+                img.src = reader.result;
+                img.style.width = '200px';
+                img.style.height = '200px';
             }
             reader.readAsDataURL(e.target.files[0]);
         });
@@ -284,48 +362,23 @@
             document.getElementById('phone').textContent = e.target.value || 'رقم الهاتف';
         });
 
-        // تحديث الحسابات
-        const socialInputs = {
-            facebook: document.getElementById('facebookInput'),
-            telegram: document.getElementById('telegramInput'),
-            instagram: document.getElementById('instagramInput')
-        };
-
-        Object.entries(socialInputs).forEach(([platform, input]) => {
-            input.addEventListener('input', (e) => {
-                const value = e.target.value;
-                const previewElement = document.getElementById(`${platform}Preview`);
-                previewElement.querySelector('span').textContent = value || `حساب ${getPlatformName(platform)}`;
-            });
-        });
-
-        function getPlatformName(platform) {
-            const names = {
-                facebook: 'الفيسبوك',
-                telegram: 'التليجرام',
-                instagram: 'الإنستجرام'
-            };
-            return names[platform];
-        }
-
-        // تغيير القياس
-        function changeSize(size) {
-            const preview = document.getElementById('preview');
-            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('active'));
-            event.target.classList.add('active');
-            preview.className = size;
-        }
-
         // حفظ الصورة
         function saveAsImage() {
+            // إخفاء أزرار الحذف قبل الحفظ
+            document.querySelectorAll('.delete-btn').forEach(btn => btn.style.display = 'none');
+            
             html2canvas(document.querySelector("#preview"), {
                 scale: 3,
-                useCORS: true
+                useCORS: true,
+                logging: true
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'profile-card.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
+                
+                // إعادة إظهار أزرار الحذف بعد الحفظ
+                document.querySelectorAll('.delete-btn').forEach(btn => btn.style.display = 'block');
             });
         }
     </script>
